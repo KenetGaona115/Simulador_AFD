@@ -78,23 +78,8 @@ public class Lenuajes_Practica_AFD {
         System.out.println("Estados finales: " + e_finales);
 
         //Matriz de transisicones 
-        x = x.substring(i);
-        int renglones = 0;
-        String[] matriz = x.split(" ");
-        for (String matriz1 : matriz) {
-            System.out.println(matriz1);
-            renglones++;
-        }
-        System.out.println("Renglones: " + renglones);
-
-        for (int j = 0; j < renglones; j++) {
-            if (!matriz[i].equals(";")) {
-                for (int k = j; k < j + 1; k++) {
-                        matriz_F[j][k] = matriz[j];
-                        System.out.println(matriz_F[j][k]);
-                }
-            }
-        }
+        x = x.substring(i).replaceAll(";", "").replaceAll(" ", "");
+        System.out.println(x);
 
     }
 
