@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,10 +23,11 @@ public class Lenuajes_Practica_AFD {
     static String alfabeto = "";
     static String q0 = "";
     static String e_finales = "";
-    static String[][] matriz_F;
+    static List<String> Lista;
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         File archivo = null;
@@ -34,7 +37,7 @@ public class Lenuajes_Practica_AFD {
 
         // Apertura del fichero y creacion de BufferedReader para poder
         // hacer una lectura comoda (disponer del metodo readLine()).
-        archivo = new File("D:\\Escritorio\\Lenguajes\\Practica 1\\texto.txt");
+        archivo = new File("D:\\Escritorio\\Lenguajes\\texto.txt");
         fr = new FileReader(archivo);
         br = new BufferedReader(fr);
 
@@ -46,7 +49,6 @@ public class Lenuajes_Practica_AFD {
         }
         //System.out.println(lectura);
         getData(lectura);
-
     }
 
     //Funcion para retornara las variables globales
@@ -77,10 +79,38 @@ public class Lenuajes_Practica_AFD {
         e_finales = x.substring(0, i);
         System.out.println("Estados finales: " + e_finales);
 
-        //Matriz de transisicones 
+        //Lista de transisicones 
         x = x.substring(i).replaceAll(";", "").replaceAll(" ", "");
         System.out.println(x);
+        Lista = toList(x);
+        isFinalState(Lista, x, e_finales);
+    }
 
+    private static List<String> toList(String x) {
+        List<String> Lista = new ArrayList<>();
+
+        for (int i = 0; i < x.length(); i += 2) {
+            Lista.add(x.substring(i, i + 2));
+        }
+
+        for (int i = 0; i < Lista.size(); i++) {
+            System.out.println(Lista.get(i));
+        }
+        return Lista;
+    }
+
+    private static boolean isFinalState(List<String> y, String x, String f) {
+        String state = "";
+        for (int i = 0; i < x.length(); i++) {
+            if (y.get(i).subSequence(i, i + 1).equals(x.substring(i, i + 1))) {
+                state = x.substring(i, i + 1);
+            }
+        }
+
+        if (f.contains(state)) {
+            return true;
+        }
+        return false;
     }
 
 }
