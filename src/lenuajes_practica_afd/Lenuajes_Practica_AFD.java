@@ -84,7 +84,10 @@ public class Lenuajes_Practica_AFD {
         System.out.println(x);
         Lista = toList(x);
         System.out.println("Estados finales:");
-        isFinalState(Lista, entrada, e_finales);
+        
+        //Corroboramos que se quede en un estado final
+        //para garantizar que fue acepatada por el Alfabeto
+        System.out.println(isFinalState(Lista, entrada, e_finales));
     }
 
     private static List<String> toList(String x) {
@@ -103,19 +106,18 @@ public class Lenuajes_Practica_AFD {
     private static boolean isFinalState(List<String> y, String x, String f) {
         String state = "";
         for (int i = 0; i < x.length(); i++) {
-//            if (y.get(i).substring(i+1).equals(x.substring(i, i+1))) {
-//                state = y.get(i).substring(i+1, i + 2);
-//                System.out.println(state);
-//            }
-            while (true) {                
-                
+            state = returnState(y,x.substring(i, i+1));
+        }
+        return f.contains(state);
+    }
+    
+    public static String returnState(List<String> y,String x){
+        for (int i = 0; i < y.size(); i++) {
+            if (y.get(i).startsWith(x)) {
+                return y.get(i).substring(+1);
             }
         }
-
-        if (f.contains(state)) {
-            return true;
-        }
-        return false;
+        return null;
     }
 
 }
