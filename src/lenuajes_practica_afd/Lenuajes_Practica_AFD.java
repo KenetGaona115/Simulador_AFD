@@ -37,7 +37,7 @@ public class Lenuajes_Practica_AFD {
 
         // Apertura del fichero y creacion de BufferedReader para poder
         // hacer una lectura comoda (disponer del metodo readLine()).
-        archivo = new File("D:\\Escritorio\\Lenguajes\\texto.txt");
+        archivo = new File("D:\\Escritorio\\Lenguajes\\texto2.txt");
         fr = new FileReader(archivo);
         br = new BufferedReader(fr);
 
@@ -107,11 +107,14 @@ public class Lenuajes_Practica_AFD {
         String state = "";
         for (int i = 0; i < x.length(); i++) {
             state = returnState(y,x.substring(i, i+1));
+            System.out.print(state + "/");
         }
+        System.out.println("");
         return f.contains(state);
     }
     
     public static String returnState(List<String> y,String x){
+        //Ciclo para realizar la busqueda del siguiente estado 
         for (int i = 0; i < y.size(); i++) {
             if (y.get(i).startsWith(x)) {
                 return y.get(i).substring(+1);
