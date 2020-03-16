@@ -87,7 +87,8 @@ public class Lenuajes_Practica_AFD {
             r_estados += currentState + "/";
         }
 
-        //Consultamos si el último estado visitado es parte de los estados finales. Si sí, imprimimos aceptada. Si no, imprimimos no aceptada.
+        //Consultamos si el último estado visitado es parte de los estados finales. 
+        //Imprimimos si es aceptada o no.
         String last = Integer.toString(currentState);
         boolean x = false;
 
