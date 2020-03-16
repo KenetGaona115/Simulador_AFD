@@ -88,7 +88,7 @@ public class Lenuajes_Practica_AFD {
         }
 
         //Consultamos si el último estado visitado es parte de los estados finales. 
-        //Imprimimos si es aceptada o no.
+        //Imprimimos si es aceptada o no.    
         String last = Integer.toString(currentState);
         boolean x = false;
 
